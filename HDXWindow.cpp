@@ -1,9 +1,7 @@
 #include "stdafx.h"
-#include "HWindow.h"
+#include "HDXWindow.h"
 
-UINT HWindow::wndIsSet = 0;
-
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK DXWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
@@ -17,14 +15,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		EndPaint(hwnd, &ps);
 		return 0;
 	}
-	case WM_CLOSE:
-	{
-		if (MessageBox(hwnd, L"Really quit?", L"Fenêtre", MB_OKCANCEL) == IDOK)
-		{
-			DestroyWindow(hwnd);
-		}
-		return 0;
-	}
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
@@ -36,7 +26,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-HWindow::HWindow(wchar_t *title, LONG width, LONG heigth) : HObject()
+
+HDXWindow::HDXWindow(wchar_t * title, LONG width, LONG heigth)
 {
 	this->instance = GetModuleHandle(NULL);
 	const wchar_t CLASS_NAME[] = L"WindowClass";
@@ -45,7 +36,7 @@ HWindow::HWindow(wchar_t *title, LONG width, LONG heigth) : HObject()
 	WNDCLASSEX wc = {};
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = WindowProc;
+	wc.lpfnWndProc = DXWindowProc;
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hInstance = this->instance;
@@ -74,22 +65,34 @@ HWindow::HWindow(wchar_t *title, LONG width, LONG heigth) : HObject()
 		);
 }
 
-HWindow::~HWindow()
+HDXWindow::~HDXWindow()
 {
 }
 
-void HWindow::show()
+void HDXWindow::show()
 {
 	ShowWindow(this->hwnd, SW_SHOW);
 	UpdateWindow(this->hwnd);
 
-
+	BOOL quit = FALSE;
 	MSG msg = {};
 
-	while (GetMessage(&msg, NULL, 0, 0))
+	while (!quit)
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 
+			if (msg.message == WM_QUIT)
+			{
+				quit = TRUE;
+			}
+		}
+		else
+		{
+
+		}
+	}
 }
+
