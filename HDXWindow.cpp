@@ -27,8 +27,9 @@ LRESULT CALLBACK DXWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 }
 
 
-HDXWindow::HDXWindow(wchar_t * title, LONG width, LONG heigth)
+HDXWindow::HDXWindow(wchar_t * title, LONG width, LONG heigth, HObject *parent)
 {
+	parent->addChild(this);
 	this->instance = GetModuleHandle(NULL);
 	const wchar_t CLASS_NAME[] = L"WindowClass";
 

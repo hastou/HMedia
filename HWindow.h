@@ -6,7 +6,7 @@ class HWindow :
 	public HObject
 {
 public:
-	HWindow(wchar_t *title = L"Window", LONG width = 200, LONG heigth = 200);
+	HWindow(wchar_t *title = L"Window", LONG width = 200, LONG heigth = 200, HObject *parent = NULL);
 	~HWindow();
 	void show();
 

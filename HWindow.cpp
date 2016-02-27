@@ -36,7 +36,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-HWindow::HWindow(wchar_t *title, LONG width, LONG heigth) : HObject()
+HWindow::HWindow(wchar_t *title, LONG width, LONG heigth, HObject *parent) : HObject(parent)
 {
 	this->instance = GetModuleHandle(NULL);
 	const wchar_t CLASS_NAME[] = L"WindowClass";
