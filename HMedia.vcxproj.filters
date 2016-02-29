@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="HDXWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="HObject.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="HWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="HTimer.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="HDXWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="HObject.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="HWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="HTimer.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="3D">
+      <UniqueIdentifier>{377d683f-4c9e-4fed-8c40-d2b83b83bc0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{d655dfbd-97c0-4b6d-9e3c-f8f80532cfeb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

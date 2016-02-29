@@ -17,14 +17,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		EndPaint(hwnd, &ps);
 		return 0;
 	}
-	case WM_CLOSE:
-	{
-		if (MessageBox(hwnd, L"Really quit?", L"Fenêtre", MB_OKCANCEL) == IDOK)
-		{
-			DestroyWindow(hwnd);
-		}
-		return 0;
-	}
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
